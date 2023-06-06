@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the application'
+                git branch: 'main', url: 'https://github.com/DiegoStudy/NewSpringMvcRest.git'
+                // Aquí puedes incluir los pasos necesarios para compilar tu aplicación
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests'
+                // Aquí puedes incluir los pasos necesarios para ejecutar las pruebas de tu aplicación
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'enviando notification to Slack channel'
+            slackSend(
+                channel: '#fundamentos-de-devops', // Reemplaza con el nombre de tu canal de Slack
+                message: 'El pipeline de prueba.' // Puedes personalizar el mensaje de notificación
+            )
+        }
+    }
+}
