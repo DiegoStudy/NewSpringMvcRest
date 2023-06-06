@@ -23,7 +23,7 @@ pipeline {
             echo 'enviando notification to Slack channel'
             slackSend(
                 channel: '#fundamentos-de-devops', // Reemplaza con el nombre de tu canal de Slack
-                message: 'El pipeline de prueba.' // Puedes personalizar el mensaje de notificación
+                message: 'El pipeline de prueba exitoso DiegoEscobar.' // Puedes personalizar el mensaje de notificación
             )
         }
     }
