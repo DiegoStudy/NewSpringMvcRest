@@ -38,14 +38,14 @@ pipeline {
             nexusArtifactUploader(
               nexusVersion: "nexus3",
               protocol: "http",
-              nexusUrl: "http://localhost:8081",
-              groupId: "com.journaldev",
-              version: "${pom.version}",  // Asegura que el valor sea una cadena de texto
+              nexusUrl: "http://localhost:8081",  // URL corregida
+              groupId: pom.groupId,
+              version: "${pom.version}",
               repository: "RepoDePrueba",
               credentialsId: "DEscobar",
               artifacts: [
-                [artifactId: 'SpringRestExample', classifier: '', file: artifactPath, type: 'war']
-              ]
+              [artifactId: 'SpringRestExample', classifier: '', file: artifactPath, type: 'war']
+            ]
             )
           } else {
             error "*** File: ${artifactPath}, could not be found"
