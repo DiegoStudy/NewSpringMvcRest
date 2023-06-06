@@ -39,7 +39,7 @@ pipeline {
               nexusVersion: "nexus3",
               protocol: "http",
               nexusUrl: "http://localhost:8081/repository/RepoDePrueba/",
-              groupId: pom.groupId,
+              groupId: "com.journaldev",
               version: "${pom.version}",  // Asegura que el valor sea una cadena de texto
               repository: "RepoDePrueba",
               credentialsId: "DEscobar",
