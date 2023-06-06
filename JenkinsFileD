@@ -38,7 +38,7 @@ pipeline {
             nexusArtifactUploader(
               nexusVersion: "nexus3",
               protocol: "http",
-              nexusUrl: "http://localhost:8081",
+              nexusUrl: "http://localhost:8081/repository/RepoDePrueba/",
               groupId: pom.groupId,
               version: "${pom.version}",  // Asegura que el valor sea una cadena de texto
               repository: "RepoDePrueba",
