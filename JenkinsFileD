@@ -40,7 +40,7 @@ pipeline {
               protocol: "http",
               nexusUrl: "http://localhost:8081",  // Cambia la URL si es necesario
               groupId: pom.groupId,
-              version: "1.5",
+              version: "1.0",
               repository: "RepoDePrueba",  // Cambia el nombre del repositorio según tus necesidades
               credentialsId: "DEscobar",  // Cambia el ID de las credenciales de Nexus según tus necesidades
               artifacts: [
