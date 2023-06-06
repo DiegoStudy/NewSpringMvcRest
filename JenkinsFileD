@@ -38,11 +38,11 @@ pipeline {
             nexusArtifactUploader(
               nexusVersion: "nexus3",
               protocol: "http",
-              nexusUrl: "http://localhost:8081",  // Cambia la URL si es necesario
+              nexusUrl: "http://localhost:8081", 
               groupId: pom.groupId,
               version: "1.0",
-              repository: "RepoDePrueba",  // Cambia el nombre del repositorio según tus necesidades
-              credentialsId: "DEscobar",  // Cambia el ID de las credenciales de Nexus según tus necesidades
+              repository: "RepoDePrueba", 
+              credentialsId: "DEscobar", 
               artifacts: [
                 [artifactId: pom.artifactId, classifier: '', file: artifactPath, type: pom.packaging]
               ]
