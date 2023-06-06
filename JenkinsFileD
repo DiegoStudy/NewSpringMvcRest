@@ -5,7 +5,7 @@ pipeline {
     stage('Hello') {
       steps {
         echo 'Hello Worldss'
-        git branch: 'main', credentialsId: 'DEscobar', url: 'https://github.com/DiegoStudy/NewSpringMvcRest.git'
+        git branch: 'main', credentialsId: '47f9858f-9dfd-4b0f-a4d3-ddd52bd4ce65', url: 'https://github.com/DiegoStudy/NewSpringMvcRest.git'
       }
     }
     stage('Initialize') {
@@ -31,21 +31,21 @@ pipeline {
           pom = readMavenPom file: "pom.xml"
           filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
           echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-          artifactPath = filesByGlob[0].path
+          artifactPath = filesByGlob[0].path.replace('/', '\\')
           artifactExists = fileExists artifactPath
           if (artifactExists) {
             echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}"
             nexusArtifactUploader(
               nexusVersion: "nexus3",
               protocol: "http",
-              nexusUrl: "http://localhost:8081/repository/RepoDePrueba/",  // URL corregida
+              nexusUrl: "http://localhost:8081/repository/RepoDePrueba/",  // Cambia la URL si es necesario
               groupId: pom.groupId,
-              version: "${pom.version}",
-              repository: "RepoDePrueba",
-              credentialsId: "DEscobar",
+              version: "1.5",
+              repository: "RepoDePrueba",  // Cambia el nombre del repositorio según tus necesidades
+              credentialsId: "DEscobar",  // Cambia el ID de las credenciales de Nexus según tus necesidades
               artifacts: [
-              [artifactId: 'SpringRestExample', classifier: '', file: artifactPath, type: 'war']
-            ]
+                [artifactId: pom.artifactId, classifier: '', file: artifactPath, type: pom.packaging]
+              ]
             )
           } else {
             error "*** File: ${artifactPath}, could not be found"
