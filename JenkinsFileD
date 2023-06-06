@@ -40,7 +40,7 @@ pipeline {
               protocol: "http",
               nexusUrl: "http://localhost:8081",
               groupId: pom.groupId,
-              version: 1.5,
+              version: "${pom.version}",  // Asegura que el valor sea una cadena de texto
               repository: "RepoDePrueba",
               credentialsId: "DEscobar",
               artifacts: [
